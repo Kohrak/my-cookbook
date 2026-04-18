@@ -1,0 +1,461 @@
+/* ======================================================
+   MY COOKBOOK — Pokopia Visual Style
+   ====================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper:       #f2e8d0;
+  --paper-dark:  #e5d9bc;
+  --paper-mid:   #ecdfc5;
+  --ink:         #2a1f0e;
+  --ink-mid:     #6b5a3e;
+  --ink-light:   #9a8a6a;
+  --green:       #4a7a4a;
+  --green-mid:   #6a9e6a;
+  --green-light: #9ec49e;
+  --green-pale:  #d4e8d4;
+  --amber:       #b8722a;
+  --amber-pale:  #f0d8a8;
+  --stamp-red:   #8b2020;
+  --stamp-blue:  #1a3a6a;
+  --border:      #c8b890;
+}
+
+html {
+  font-size: 15px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  line-height: 1.7;
+  color: var(--ink);
+  background: linear-gradient(135deg, #2d3a28 0%, #3a4a30 50%, #1e2e1a 100%);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+/* --- Leaves --- */
+.leaves {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.leaf {
+  position: absolute;
+  top: -30px;
+  animation: leafFall linear infinite;
+}
+@keyframes leafFall {
+  0%   { opacity: 0;   transform: translateY(0)     rotate(0deg)   translateX(0); }
+  5%   { opacity: 0.7; }
+  25%  { transform: translateY(25vh)  rotate(90deg)  translateX(30px); }
+  50%  { transform: translateY(50vh)  rotate(200deg) translateX(-20px); opacity: 0.5; }
+  75%  { transform: translateY(75vh)  rotate(310deg) translateX(25px); }
+  95%  { opacity: 0.3; }
+  100% { opacity: 0;   transform: translateY(105vh) rotate(400deg) translateX(-15px); }
+}
+
+/* --- Document --- */
+.document {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 0 1px var(--border),
+    4px 4px 0 #1a2614,
+    8px 8px 0 #141e10,
+    0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.document::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle at top right, rgba(74, 122, 74, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Archive Band --- */
+.archive-band {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Special Elite', serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.archive-band span:last-child { opacity: 0.7; }
+
+/* --- Header --- */
+header {
+  padding: 2.2rem 2.8rem 1.8rem;
+  border-bottom: 2px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+h1 {
+  font-family: 'Special Elite', serif;
+  font-size: 2.6rem;
+  letter-spacing: 2px;
+  line-height: 1;
+  color: var(--ink);
+}
+.title-tag {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink-mid);
+  margin-top: 0.4rem;
+}
+.stamps {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.stamp {
+  font-family: 'Special Elite', serif;
+  font-size: 0.62rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border: 2px solid;
+  display: inline-block;
+}
+.stamp-red  { color: var(--stamp-red);  border-color: var(--stamp-red);  transform: rotate(2deg); }
+.stamp-blue { color: var(--stamp-blue); border-color: var(--stamp-blue); transform: rotate(-1.5deg); }
+
+.found-note {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--green);
+  text-align: right;
+  transform: rotate(-3deg);
+  opacity: 0.85;
+  line-height: 1.3;
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+/* --- Vine Divider --- */
+.vine-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 2.8rem;
+  margin: 0.8rem 0;
+}
+.vine-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--green-light), var(--border), var(--green-light));
+  opacity: 0.6;
+}
+
+/* --- Body Grid --- */
+.body-grid {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+}
+main {
+  padding: 2rem 2rem 2rem 2.8rem;
+  border-right: 1px dashed var(--border);
+  position: relative;
+  z-index: 1;
+}
+aside {
+  background: var(--paper-mid);
+  padding: 2rem 1.6rem;
+  position: relative;
+  z-index: 1;
+  background-image: radial-gradient(ellipse at top center, rgba(74, 122, 74, 0.08) 0%, transparent 60%);
+}
+
+/* --- Section Title --- */
+.section-title {
+  font-family: 'Special Elite', serif;
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--green-light);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.section-title::before {
+  content: "❧";
+  color: var(--green-mid);
+}
+
+/* --- Recipe Cards --- */
+.recipe {
+  padding-top: 1.8rem;
+  margin-top: 1.8rem;
+  border-top: 1px dashed var(--border);
+}
+.recipe:first-of-type {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+.recipe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+.recipe-title {
+  font-family: 'Special Elite', serif;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.recipe-number {
+  font-family: 'Special Elite', serif;
+  font-size: 0.7rem;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.recipe-macros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+.macro {
+  font-family: 'Special Elite', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: var(--paper-dark);
+  color: var(--ink-light);
+  border: 1px solid var(--border);
+  padding: 0.12rem 0.45rem;
+}
+.macro.kcal    { background: var(--amber-pale); color: var(--amber); border-color: #d4b870; }
+.macro.protein { background: var(--green-pale); color: var(--green); border-color: var(--green-light); }
+
+/* --- Recipe Body --- */
+.recipe-body {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 1.5rem;
+}
+.recipe-body.simple {
+  grid-template-columns: 1fr;
+}
+
+/* --- Sub Labels --- */
+.sub-label {
+  font-family: 'Special Elite', serif;
+  font-size: 0.6rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* --- Ingredient List --- */
+.ingredient-list {
+  list-style: none;
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+.ingredient-list li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+.ingredient-list li::before {
+  content: "✦";
+  color: var(--amber);
+  position: absolute;
+  left: 0;
+  font-size: 0.55rem;
+  top: 0.35rem;
+}
+.ingredient-list strong { color: var(--ink); font-weight: 600; }
+
+/* --- Instruction List --- */
+.instruction-list {
+  counter-reset: step;
+  list-style: none;
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+}
+.instruction-list li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.55rem;
+}
+.instruction-list li::before {
+  content: counter(step);
+  font-family: 'Special Elite', serif;
+  font-size: 0.7rem;
+  color: var(--green);
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  width: 1.3rem;
+  text-align: right;
+}
+
+/* Simple recipe paragraphs (18–20) */
+.recipe-ingredients p,
+.recipe-instructions p {
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  line-height: 1.65;
+}
+
+/* --- Aside --- */
+.aside-section { margin-bottom: 2rem; }
+.aside-title {
+  font-family: 'Special Elite', serif;
+  font-size: 0.62rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+.recipe-index {
+  list-style: none;
+  counter-reset: idx;
+}
+.recipe-index li {
+  counter-increment: idx;
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.45rem;
+  line-height: 1.35;
+}
+.recipe-index li::before {
+  content: counter(idx, decimal-leading-zero);
+  font-family: 'Special Elite', serif;
+  font-size: 0.6rem;
+  color: var(--ink-light);
+  position: absolute;
+  left: 0;
+  top: 0.12rem;
+}
+.recipe-index a {
+  color: var(--ink-mid);
+  text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 0.82rem;
+}
+.recipe-index a:hover { color: var(--green); text-decoration: underline; }
+
+.chronicle-box {
+  background: var(--paper-dark);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green-mid);
+  padding: 0.9rem 1rem;
+  margin-bottom: 1rem;
+}
+.chronicle-box p {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  line-height: 1.55;
+  margin-bottom: 0.5rem;
+}
+.chronicle-box p:last-child { margin-bottom: 0; }
+
+.aside-note {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  color: var(--green);
+  text-align: center;
+  font-style: italic;
+  line-height: 1.4;
+  opacity: 0.75;
+  margin-top: 1.2rem;
+}
+
+.archive-mark {
+  text-align: center;
+  margin-top: 2rem;
+  opacity: 0.1;
+  font-size: 2rem;
+  user-select: none;
+  color: var(--ink);
+}
+
+/* --- Footer --- */
+footer {
+  border-top: 2px solid var(--border);
+  background: var(--paper-dark);
+  padding: 0.9rem 2.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  gap: 0.5rem;
+}
+.footer-note {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--green);
+  font-style: italic;
+}
+.footer-code {
+  font-family: 'Special Elite', serif;
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+/* --- Responsive --- */
+@media (max-width: 700px) {
+  body { padding: 1rem 0.5rem; }
+  .body-grid { grid-template-columns: 1fr; }
+  main { padding: 1.5rem; border-right: none; }
+  aside { border-top: 1px dashed var(--border); }
+  header { padding: 1.5rem; }
+  .header-top { flex-direction: column; }
+  .found-note { display: none; }
+  h1 { font-size: 2rem; }
+  .archive-band { padding: 0.5rem 1rem; font-size: 0.62rem; }
+  footer { padding: 0.9rem 1.5rem; }
+  .vine-divider { padding: 0 1.5rem; }
+}
+
+@media (max-width: 500px) {
+  .recipe-body:not(.simple) { grid-template-columns: 1fr; }
+}
